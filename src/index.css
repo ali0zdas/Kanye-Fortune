@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+:root,
+[data-era="donda"] {
+  --era-bg-primary: #050505;
+  --era-bg-secondary: #0d0d0d;
+  --era-bg-surface: #121212;
+  --era-accent-primary: #ffffff;
+  --era-accent-secondary: #71717a;
+  --era-border: #27272a;
+  --era-text-primary: #f4f4f5;
+  --era-text-secondary: #a1a1aa;
+  --era-glow: rgba(255, 255, 255, 0.08);
+  --era-radius: 0px;
+  --era-font: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --era-tracking: 0.12em;
+}
+
+[data-era="graduation"] {
+  --era-bg-primary: #1a052e;
+  --era-bg-secondary: #2e0854;
+  --era-bg-surface: #4c1d95;
+  --era-accent-primary: #ec4899;
+  --era-accent-secondary: #fbbf24;
+  --era-border: #ec4899;
+  --era-text-primary: #ffffff;
+  --era-text-secondary: #f3e8ff;
+  --era-glow: rgba(236, 72, 153, 0.45);
+  --era-radius: 24px;
+  --era-font: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --era-tracking: 0.02em;
+}
+
+[data-era="808s"] {
+  --era-bg-primary: #080d1a;
+  --era-bg-secondary: #0f172a;
+  --era-bg-surface: #1e293b;
+  --era-accent-primary: #06b6d4;
+  --era-accent-secondary: #f43f5e;
+  --era-border: #06b6d4;
+  --era-text-primary: #f8fafc;
+  --era-text-secondary: #94a3b8;
+  --era-glow: rgba(6, 182, 212, 0.35);
+  --era-radius: 16px;
+  --era-font: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --era-tracking: 0.04em;
+}
+
+[data-era="yeezus"] {
+  --era-bg-primary: #0a0a0c;
+  --era-bg-secondary: #18181b;
+  --era-bg-surface: #27272a;
+  --era-accent-primary: #ef4444;
+  --era-accent-secondary: #cbd5e1;
+  --era-border: #ef4444;
+  --era-text-primary: #ffffff;
+  --era-text-secondary: #a1a1aa;
+  --era-glow: rgba(239, 68, 68, 0.35);
+  --era-radius: 2px;
+  --era-font: 'Space Grotesk', monospace, sans-serif;
+  --era-tracking: -0.01em;
+}
+
+/* Base Body Styles */
+body {
+  background-color: var(--era-bg-primary);
+  color: var(--era-text-primary);
+  font-family: var(--era-font);
+  letter-spacing: var(--era-tracking);
+  min-height: 100vh;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+}
+
+/* 3D Transform & Backface Helpers */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-1200 {
+  perspective: 1200px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Era transition smooth helpers */
+.transition-era {
+  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Border Beam & Ambient FX (Inspired by libraries.dev & shipnotes) */
+@keyframes border-beam-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-border-beam {
+  animation: border-beam-spin 8s linear infinite;
+}
+
+@keyframes voice-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+.animate-voice-pulse {
+  animation: voice-pulse 2s ease-in-out infinite;
+}
