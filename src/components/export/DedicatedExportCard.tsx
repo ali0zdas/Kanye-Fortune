@@ -94,11 +94,6 @@ export const DedicatedExportCard = forwardRef<HTMLDivElement, DedicatedExportCar
       ? fortune.actionableCommand
       : 'Shut down the studio until it is completely perfect.';
 
-    const displayQuestion =
-      fortune?.userQuestion && fortune.userQuestion.trim().length > 0
-        ? fortune.userQuestion.trim()
-        : 'PURE SERENDIPITY / DESTINY WISDOM';
-
     return (
       <div
         ref={ref}
@@ -391,15 +386,17 @@ export const DedicatedExportCard = forwardRef<HTMLDivElement, DedicatedExportCar
                   MODE: DIVINE REVELATION // {activeEra.toUpperCase()}
                 </div>
 
-                {/* Question */}
-                <div className="my-3 border-b border-[#18181b]/10 pb-2">
-                  <div className="text-[10px] font-bold text-zinc-500 uppercase">
-                    [01] INQUIRY SUBMITTED
+                {/* Question (only if inquiry submitted) */}
+                {fortune?.userQuestion && fortune.userQuestion.trim().length > 0 && (
+                  <div className="my-3 border-b border-[#18181b]/10 pb-2">
+                    <div className="text-[10px] font-bold text-zinc-500 uppercase">
+                      [01] INQUIRY SUBMITTED
+                    </div>
+                    <div className="text-xs font-semibold text-[#18181b] mt-0.5">
+                      "{fortune.userQuestion.trim()}"
+                    </div>
                   </div>
-                  <div className="text-xs font-semibold text-[#18181b] mt-0.5">
-                    "{displayQuestion}"
-                  </div>
-                </div>
+                )}
 
                 {/* Prophecy */}
                 <div className="my-3 border-b border-[#18181b]/10 pb-2">

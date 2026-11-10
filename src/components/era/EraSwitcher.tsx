@@ -23,7 +23,7 @@ export const EraSwitcher: React.FC<EraSwitcherProps> = ({ activeEra, onSelectEra
       className="inline-flex items-center p-1 rounded-full border border-white/10 bg-black/40 backdrop-blur-md shadow-inner"
     >
       <div className="flex items-center gap-1">
-        {ERAS.map((era, index) => {
+        {ERAS.map((era) => {
           const isActive = activeEra === era.id;
           return (
             <button
@@ -34,7 +34,7 @@ export const EraSwitcher: React.FC<EraSwitcherProps> = ({ activeEra, onSelectEra
                   ? 'text-white'
                   : 'text-zinc-400 hover:text-zinc-200 hover:bg-white/5'
               }`}
-              title={`${era.name} (${era.year}) - Key [${index + 1}]`}
+              title={`${era.name} (${era.year})`}
             >
               {isActive && (
                 <motion.div
@@ -51,9 +51,6 @@ export const EraSwitcher: React.FC<EraSwitcherProps> = ({ activeEra, onSelectEra
               <span className="relative z-10 flex items-center gap-1.5">
                 <span className="opacity-80">{ERA_ICONS[era.id]}</span>
                 <span>{era.name.toUpperCase()}</span>
-                <span className="text-[10px] opacity-40 font-mono hidden sm:inline">
-                  [{index + 1}]
-                </span>
               </span>
             </button>
           );

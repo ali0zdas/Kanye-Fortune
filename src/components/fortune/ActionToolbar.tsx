@@ -76,7 +76,7 @@ export const ActionToolbar: React.FC<ActionToolbarProps> = ({
           onClick={onRedraw}
           disabled={isLoading}
           className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-mono font-bold uppercase tracking-wider text-white bg-white/10 hover:bg-white/15 border border-white/10 hover:border-white/20 transition-all duration-200 active:scale-95 disabled:opacity-50"
-          title="Draw another revelation [Space]"
+          title="Draw another revelation"
           aria-label="Another revelation"
         >
           {isLoading ? (
@@ -84,8 +84,7 @@ export const ActionToolbar: React.FC<ActionToolbarProps> = ({
           ) : (
             <RotateCcw className="w-4 h-4" />
           )}
-          <span>{isLoading ? 'DRAWING...' : 'REDRAW'}</span>
-          <span className="text-[10px] opacity-40 hidden sm:inline">[Space]</span>
+          <span>{isLoading ? 'DRAWING...' : 'NEW FORTUNE'}</span>
         </button>
 
         {/* 2. Flip Card Button (Only active/visible in 3D Card mode) */}
@@ -94,12 +93,11 @@ export const ActionToolbar: React.FC<ActionToolbarProps> = ({
             onClick={onFlip}
             disabled={isLoading}
             className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-mono font-bold uppercase tracking-wider text-white bg-white/10 hover:bg-white/15 border border-white/10 hover:border-white/20 transition-all duration-200 active:scale-95 disabled:opacity-50"
-            title="Flip tarot card [F]"
+            title="Flip tarot card"
             aria-label="Flip card"
           >
             <RefreshCw className="w-4 h-4" />
             <span>FLIP</span>
-            <span className="text-[10px] opacity-40 hidden sm:inline">[F]</span>
           </button>
         )}
 

@@ -32,11 +32,6 @@ export const ThermalReceipt: React.FC<ThermalReceiptProps> = ({
         hour12: true,
       });
 
-  const displayQuestion =
-    fortune?.userQuestion && fortune.userQuestion.trim().length > 0
-      ? fortune.userQuestion.trim()
-      : 'PURE SERENDIPITY / DESTINY WISDOM';
-
   const displayQuote = fortune
     ? fortune.quote
     : 'I refuse to accept other people’s ideas of my limitations.';
@@ -129,17 +124,19 @@ export const ThermalReceipt: React.FC<ThermalReceiptProps> = ({
             </div>
           </div>
 
-          {/* Item 1: User Inquiry */}
-          <div className="space-y-1">
-            <div className="font-bold uppercase text-zinc-700">USER INQUIRY:</div>
-            <div className="flex justify-between pl-2 italic">
-              <span className="max-w-[240px] truncate">"{displayQuestion}"</span>
-              <div className="flex gap-8 shrink-0 font-bold">
-                <span>1</span>
-                <span>$0.00</span>
+          {/* Optional User Inquiry (if provided) */}
+          {fortune?.userQuestion && fortune.userQuestion.trim().length > 0 && (
+            <div className="space-y-1">
+              <div className="font-bold uppercase text-zinc-700">USER INQUIRY:</div>
+              <div className="flex justify-between pl-2 italic">
+                <span className="max-w-[240px] truncate">"{fortune.userQuestion.trim()}"</span>
+                <div className="flex gap-8 shrink-0 font-bold">
+                  <span>1</span>
+                  <span>$0.00</span>
+                </div>
               </div>
             </div>
-          </div>
+          )}
 
           {/* Item 2: The Prophecy */}
           <div className="space-y-1">

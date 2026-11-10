@@ -136,8 +136,8 @@ export const OracleCard: React.FC<OracleCardProps> = ({
           tabIndex={0}
           aria-label={
             isFlipped
-              ? "Oracle Tarot Card front showing revelation. Tap or press Enter to flip to back."
-              : "Oracle Tarot Card back. Tap or press Enter to reveal revelation."
+              ? "Oracle Tarot Card front showing revelation. Tap to flip to back."
+              : "Oracle Tarot Card back. Tap to reveal revelation."
           }
           aria-pressed={isFlipped}
           className="w-full h-full relative transform-style-preserve-3d cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 rounded-3xl"
@@ -175,7 +175,7 @@ export const OracleCard: React.FC<OracleCardProps> = ({
                   {serialNumber}
                 </span>
                 <span className="text-[10px] font-mono text-zinc-500 flex items-center gap-1 hover:text-zinc-300">
-                  <RefreshCw className="w-2.5 h-2.5" /> [F] Flip
+                  <RefreshCw className="w-2.5 h-2.5" /> Flip
                 </span>
               </div>
             </div>
@@ -439,7 +439,7 @@ export const OracleCard: React.FC<OracleCardProps> = ({
                 }}
               >
                 <Sparkles className="w-3.5 h-3.5 animate-spin-slow" />
-                <span>{isLoading ? 'CHANNELING YE...' : 'TOUCH OR PRESS [F] TO REVEAL'}</span>
+                <span>{isLoading ? 'CHANNELING YE...' : 'TOUCH TO REVEAL'}</span>
               </motion.div>
             </div>
 
@@ -447,7 +447,7 @@ export const OracleCard: React.FC<OracleCardProps> = ({
             <div className="pt-3 border-t border-white/10 text-center text-[10px] font-mono text-zinc-400 uppercase tracking-widest flex items-center justify-center gap-2">
               <RefreshCw className="w-3 h-3 text-white" />
               <span>
-                {isLoading ? 'CHANNELING...' : 'CLICK OR PRESS [F] TO REVEAL REVELATION'}
+                {isLoading ? 'CHANNELING...' : 'CLICK TO REVEAL REVELATION'}
               </span>
             </div>
           </div>

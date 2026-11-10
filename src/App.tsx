@@ -4,7 +4,6 @@ import { EraId, ViewMode } from './types/fortune';
 import { getEraConfig } from './data/eras';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
-import { PromptBox } from './components/fortune/PromptBox';
 import { ModeToggle } from './components/fortune/ModeToggle';
 import { OracleCard } from './components/fortune/OracleCard';
 import { ThermalReceipt } from './components/fortune/ThermalReceipt';
@@ -13,7 +12,6 @@ import { Toast } from './components/ui/Toast';
 import { VoiceGlow } from './components/ui/VoiceGlow';
 import { SpeakingVoiceOrb } from './components/ui/SpeakingVoiceOrb';
 import { useKanyeFortune } from './hooks/useKanyeFortune';
-import { useYeAudio } from './hooks/useYeAudio';
 import { useKanyeTTS } from './hooks/useKanyeTTS';
 import { Compass } from 'lucide-react';
 
@@ -27,22 +25,11 @@ export function App() {
     isFlipped,
     activeEra,
     viewMode,
-    userQuestion,
-    setUserQuestion,
     setActiveEra,
     setViewMode,
     drawFortune,
     flipCard,
   } = useKanyeFortune({ autoDraw: true });
-
-  const {
-    isMuted,
-    toggleMute,
-    playSubBass808,
-    playCardFlipWhoosh,
-    playReceiptClick,
-    initAudio,
-  } = useYeAudio();
 
   const { isPlaying: isSpeaking, speak, stop: stopTTS } = useKanyeTTS();
 
@@ -82,80 +69,46 @@ export function App() {
     document.documentElement.setAttribute('data-era', activeEra);
   }, [activeEra]);
 
-  // Audio-aware era selector
+  // Era selector
   const handleSelectEra = useCallback(
     (era: EraId) => {
       setActiveEra(era);
-      playSubBass808();
     },
-    [setActiveEra, playSubBass808]
+    [setActiveEra]
   );
 
-  // Audio-aware view mode toggler
+  // View mode toggler
   const handleToggleViewMode = useCallback(
     (mode: ViewMode) => {
       if (mode === viewMode) return;
-      if (mode === 'receipt') {
-        playReceiptClick();
-      } else {
-        playCardFlipWhoosh();
-      }
       setViewMode(mode);
     },
-    [viewMode, playReceiptClick, playCardFlipWhoosh, setViewMode]
+    [viewMode, setViewMode]
   );
 
-  // Audio-aware card flip handler
+  // Card flip handler
   const handleFlip = useCallback(() => {
-    playCardFlipWhoosh();
     flipCard();
-  }, [playCardFlipWhoosh, flipCard]);
+  }, [flipCard]);
 
-  // Audio-aware fortune draw handler
-  const handleDraw = useCallback(
-    async (question?: string) => {
-      initAudio();
-      if (isSpeaking) {
-        stopTTS();
-      }
-      playSubBass808();
-      const drawn = await drawFortune(question);
-      if (viewMode === 'receipt') {
-        playReceiptClick();
-      }
-      if (drawn) {
-        const verdictUpper = drawn.destinyVerdict.title.toUpperCase();
-        if (
-          verdictUpper.includes('GOD LEVEL') ||
-          verdictUpper.includes('ASCENDANT') ||
-          drawn.auraScore >= 98
-        ) {
-          triggerConfetti(activeEra);
-        }
-      }
-      return drawn;
-    },
-    [
-      initAudio,
-      isSpeaking,
-      stopTTS,
-      playSubBass808,
-      drawFortune,
-      viewMode,
-      playReceiptClick,
-      activeEra,
-      triggerConfetti,
-    ]
-  );
-
-  // Mute toggler with speech cancel & toast feedback
-  const handleToggleMute = useCallback(() => {
-    const updatedMuted = toggleMute();
-    if (updatedMuted && isSpeaking) {
+  // Fortune draw handler
+  const handleDraw = useCallback(async () => {
+    if (isSpeaking) {
       stopTTS();
     }
-    setToastMessage(updatedMuted ? 'Sound muted' : 'Sound enabled');
-  }, [toggleMute, isSpeaking, stopTTS]);
+    const drawn = await drawFortune();
+    if (drawn) {
+      const verdictUpper = drawn.destinyVerdict.title.toUpperCase();
+      if (
+        verdictUpper.includes('GOD LEVEL') ||
+        verdictUpper.includes('ASCENDANT') ||
+        drawn.auraScore >= 98
+      ) {
+        triggerConfetti(activeEra);
+      }
+    }
+    return drawn;
+  }, [isSpeaking, stopTTS, drawFortune, activeEra, triggerConfetti]);
 
   // Voice TTS toggle handler
   const handleToggleTTS = useCallback(() => {
@@ -191,13 +144,11 @@ export function App() {
         handleSelectEra('808s');
       } else if (e.key === '4') {
         handleSelectEra('yeezus');
-      } else if (e.key.toLowerCase() === 'm') {
-        handleToggleMute();
       } else if (e.key.toLowerCase() === 'f') {
         handleFlip();
       }
     },
-    [handleDraw, handleSelectEra, handleToggleMute, handleFlip]
+    [handleDraw, handleSelectEra, handleFlip]
   );
 
   useEffect(() => {
@@ -227,8 +178,6 @@ export function App() {
         onSelectEra={handleSelectEra}
         viewMode={viewMode}
         onToggleViewMode={handleToggleViewMode}
-        isMuted={isMuted}
-        onToggleMute={handleToggleMute}
       />
 
       {/* Main Interactive Stage */}
@@ -264,15 +213,6 @@ export function App() {
             </p>
           </motion.div>
         </div>
-
-        {/* Prompt Input & Category Presets */}
-        <PromptBox
-          userQuestion={userQuestion}
-          onQuestionChange={setUserQuestion}
-          onDraw={handleDraw}
-          isLoading={isLoading}
-          activeEra={activeEra}
-        />
 
         {/* Mode Toggle Switcher */}
         <div className="mb-4">
@@ -330,7 +270,7 @@ export function App() {
           isLoading={isLoading}
           isSpeaking={isSpeaking}
           activeEra={activeEra}
-          onRedraw={() => handleDraw()}
+          onRedraw={handleDraw}
           onFlip={handleFlip}
           onToggleTTS={handleToggleTTS}
           onExport={() => setIsExportModalOpen(true)}
