@@ -28,7 +28,7 @@ export const ERAS: EraConfig[] = [
     name: 'Donda',
     year: '2021',
     subtitle: 'Brutalist Monolith & Void',
-    description: 'Pitch black void, monolithic Latin cross runes, ultra-minimalist utilitarian transcendence.',
+    description: 'Pitch black void, soaring Donda dove runes, ultra-minimalist utilitarian transcendence.',
     colors: {
       bg: '#050505',
       surface: '#121212',

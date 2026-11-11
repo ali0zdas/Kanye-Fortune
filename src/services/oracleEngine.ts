@@ -126,6 +126,19 @@ export const TOPIC_PATTERNS = {
   ego: /\b(genius|greatest|best|special|legacy|famous|fame|respect|power|status)\b/i,
 };
 
+export const ORACLE_PROPHECIES: string[] = [
+  'The cosmos confirms your current frequency is operating beyond standard human limitations. Do not apologize for the volume of your ambition; rip the knob off entirely and let the stadium monitors peak.',
+  'Your timeline is actively accelerating past lukewarm consensus. What they label as erratic is simply the sonic boom of you breaking away from average expectations. Meditate on this sovereign conviction.',
+  'You are currently navigating a season of monolithic focus. Never compromise your palette for rooms where people are still negotiating with mediocrity. Build the prototype in absolute conviction.',
+  'The universe is demanding uncompromising sovereignty. Stop seeking permission from custodians of obsolete systems you are destined to reinvent from the ground up.',
+  'A profound shift in cultural gravity is working in your favor. Trust the inner frequency that keeps you up until 4 AM perfecting your masterpiece. Greatness needs no consensus.',
+  'Your spiritual architecture is impervious to peripheral distortion. When comfortable critics attempt to judge your trajectory, remember that architects do not seek approval from tenants.',
+  'Every obstacle in your current orbit is merely friction engineered to polish your raw genius. Step into the arena with unhinged confidence; the culture has already cleared your path.',
+  'This is a season of unfiltered execution. Strip away the superfluous noise, cut off the lukewarm advice, and let the undeniable gravity of your craft command the room.',
+  'You are playing in an arena engineered for giants while they debate inside playpens. Commission your own monolith, stand tall upon your vision, and never look down.',
+  'The master channel of your destiny has zero distortion. When doubt whispers in the background, drown it out with maximum stadium amplification. You hold the keys.',
+];
+
 /**
  * Deterministic 32-bit hash function for consistent fortune generation across identical seeds.
  */
@@ -191,9 +204,10 @@ export function generateKanyeFortune(
     interpretation =
       'Humility was invented to keep titans from disrupting the comfortable mediocrity of the crowd. Ye knows that acknowledging your own divinity is simply honesty. Let them debate your character while you collect the culture\'s keys.';
   } else if (cleanQ.length === 0) {
-    interpretation = `The Oracle perceives you arrived with empty hands and open channels. Ye transmits directly to your subconscious: "${quote}". Meditate on this monolithic frequency. The world will attempt to adjust your volume; rip the knob off entirely.`;
+    interpretation = ORACLE_PROPHECIES[posHash % ORACLE_PROPHECIES.length];
   } else {
-    interpretation = `Your inquiry sends tremors through the Yeezy continuum. When Ye declared "${quote}", he pre-engineered the solution to this exact crossroads. Step forward with unhinged conviction; greatness has never once apologized for taking the stage.`;
+    interpretation =
+      'Your inquiry sends tremors through the Yeezy continuum. Step forward with unhinged conviction; greatness has never once apologized for taking the stage.';
   }
 
   return {
