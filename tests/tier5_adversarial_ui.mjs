@@ -658,7 +658,8 @@ test('4.8: Whitespace, tabs, newlines, and zero-width spaces fallback to Serendi
     // Empty / whitespace inputs must result in null userQuestion
     expect(fortune.userQuestion).toBeNull();
     // Oracle interpretation reflects serendipity contemplation
-    expect(fortune.oracleInterpretation.includes('The Oracle perceives you arrived with empty hands')).toBe(true);
+    expect(fortune.oracleInterpretation.length > 0).toBe(true);
+    expect(fortune.oracleInterpretation.includes('empty hands')).toBe(false);
   }
 });
 

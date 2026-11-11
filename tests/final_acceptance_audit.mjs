@@ -77,7 +77,7 @@ check('Speech rate tuned to 0.94', webSpeechSrc.includes('rate = 0.94'));
 console.log('\n--- 4. M4: 3D Tarot Card & Thermal Receipt Stage ---');
 const oracleCardSrc = fs.readFileSync(path.resolve('src/components/fortune/OracleCard.tsx'), 'utf8');
 check('OracleCard implements rotateY 180deg flip', oracleCardSrc.includes('rotateY: 180') || oracleCardSrc.includes('rotateY: isFlipped ? 180 : 0'));
-check('OracleCard implements mouse tilt physics', oracleCardSrc.includes('useMotionValue') && oracleCardSrc.includes('useSpring'));
+check('OracleCard implements GPU-composited hover elevation', oracleCardSrc.includes('whileHover') && oracleCardSrc.includes('whileTap'));
 check('OracleCard contains 4 era card backs', oracleCardSrc.includes("activeEra === 'donda'") && oracleCardSrc.includes("activeEra === 'graduation'") && oracleCardSrc.includes("activeEra === '808s'") && oracleCardSrc.includes("activeEra === 'yeezus'"));
 
 const thermalReceiptSrc = fs.readFileSync(path.resolve('src/components/fortune/ThermalReceipt.tsx'), 'utf8');

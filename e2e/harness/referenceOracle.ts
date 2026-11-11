@@ -235,9 +235,10 @@ export function generateKanyeFortune(
   } else if (TOPIC_PATTERNS.ego.test(cleanQ)) {
     interpretation = `Humility was invented to keep titans from disrupting the comfortable mediocrity of the crowd. Ye knows that acknowledging your own divinity is simply honesty. Let them debate your character while you collect the culture's keys.`;
   } else if (cleanQ.length === 0) {
-    interpretation = `The Oracle perceives you arrived with empty hands and open channels. Ye transmits directly to your subconscious: "${quote}". Meditate on this monolithic frequency. The world will attempt to adjust your volume; rip the knob off entirely.`;
+    interpretation = 'The cosmos confirms your current frequency is operating beyond standard human limitations. Do not apologize for the volume of your ambition; rip the knob off entirely and let the stadium monitors peak.';
   } else {
-    interpretation = `Your inquiry sends tremors through the Yeezy continuum. When Ye declared "${quote}", he pre-engineered the solution to this exact crossroads. Step forward with unhinged conviction; greatness has never once apologized for taking the stage.`;
+    interpretation =
+      'Your inquiry sends tremors through the Yeezy continuum. Step forward with unhinged conviction; greatness has never once apologized for taking the stage.';
   }
 
   return {
