@@ -5,8 +5,6 @@ import { copyFortuneToClipboard, createTwitterShareUrl } from '../../utils/share
 import {
   RotateCcw,
   RefreshCw,
-  Volume2,
-  VolumeX,
   Copy,
   Check,
   Share2,
@@ -19,11 +17,9 @@ export interface ActionToolbarProps {
   viewMode: ViewMode;
   isFlipped: boolean;
   isLoading: boolean;
-  isSpeaking: boolean;
   activeEra: EraId;
   onRedraw: () => void;
   onFlip: () => void;
-  onToggleTTS: () => void;
   onExport?: () => void;
   onToast?: (message: string) => void;
 }
@@ -33,11 +29,9 @@ export const ActionToolbar: React.FC<ActionToolbarProps> = ({
   viewMode,
   isFlipped: _isFlipped,
   isLoading,
-  isSpeaking,
   activeEra,
   onRedraw,
   onFlip,
-  onToggleTTS,
   onExport,
   onToast,
 }) => {
@@ -101,27 +95,7 @@ export const ActionToolbar: React.FC<ActionToolbarProps> = ({
           </button>
         )}
 
-        {/* 3. Voice TTS Synthesis Button */}
-        <button
-          onClick={onToggleTTS}
-          disabled={!fortune || isLoading}
-          className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all duration-200 active:scale-95 disabled:opacity-50 border ${
-            isSpeaking
-              ? 'bg-amber-400 text-black border-amber-300 shadow-md animate-pulse'
-              : 'text-white bg-white/10 hover:bg-white/15 border-white/10 hover:border-white/20'
-          }`}
-          title={isSpeaking ? 'Silence Ye' : 'Hear Ye Speak'}
-          aria-label={isSpeaking ? 'Silence Ye voice' : 'Speak prophecy'}
-        >
-          {isSpeaking ? (
-            <VolumeX className="w-4 h-4" />
-          ) : (
-            <Volume2 className="w-4 h-4" />
-          )}
-          <span>{isSpeaking ? 'SILENCE YE' : 'HEAR YE'}</span>
-        </button>
-
-        {/* 4. 1-Click Copy Wisdom Button */}
+        {/* 3. 1-Click Copy Wisdom Button */}
         <button
           onClick={handleCopy}
           disabled={!fortune || isLoading}

@@ -9,11 +9,8 @@ import { OracleCard } from './components/fortune/OracleCard';
 import { ThermalReceipt } from './components/fortune/ThermalReceipt';
 import { ActionToolbar } from './components/fortune/ActionToolbar';
 import { Toast } from './components/ui/Toast';
-import { VoiceGlow } from './components/ui/VoiceGlow';
-import { SpeakingVoiceOrb } from './components/ui/SpeakingVoiceOrb';
 import { useKanyeFortune } from './hooks/useKanyeFortune';
-import { useKanyeTTS } from './hooks/useKanyeTTS';
-import { Compass } from 'lucide-react';
+import { useYeAudio } from './hooks/useYeAudio';
 
 // Lazy-load the heavy export modal + html-to-image canvas rasterizer on demand
 const ExportModal = lazy(() => import('./components/export/ExportModal'));
@@ -31,7 +28,14 @@ export function App() {
     flipCard,
   } = useKanyeFortune({ autoDraw: true });
 
-  const { isPlaying: isSpeaking, speak, stop: stopTTS } = useKanyeTTS();
+  const {
+    isMuted,
+    toggleMute,
+    playSubBass808,
+    playCardFlipWhoosh,
+    playReceiptClick,
+    initAudio,
+  } = useYeAudio();
 
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [isExportModalOpen, setIsExportModalOpen] = useState<boolean>(false);
@@ -69,34 +73,43 @@ export function App() {
     document.documentElement.setAttribute('data-era', activeEra);
   }, [activeEra]);
 
-  // Era selector
+  // Audio-aware era selector
   const handleSelectEra = useCallback(
     (era: EraId) => {
       setActiveEra(era);
+      playSubBass808();
     },
-    [setActiveEra]
+    [setActiveEra, playSubBass808]
   );
 
-  // View mode toggler
+  // Audio-aware view mode toggler
   const handleToggleViewMode = useCallback(
     (mode: ViewMode) => {
       if (mode === viewMode) return;
+      if (mode === 'receipt') {
+        playReceiptClick();
+      } else {
+        playCardFlipWhoosh();
+      }
       setViewMode(mode);
     },
-    [viewMode, setViewMode]
+    [viewMode, playReceiptClick, playCardFlipWhoosh, setViewMode]
   );
 
-  // Card flip handler
+  // Audio-aware card flip handler
   const handleFlip = useCallback(() => {
+    playCardFlipWhoosh();
     flipCard();
-  }, [flipCard]);
+  }, [playCardFlipWhoosh, flipCard]);
 
-  // Fortune draw handler
+  // Audio-aware fortune draw handler
   const handleDraw = useCallback(async () => {
-    if (isSpeaking) {
-      stopTTS();
-    }
+    initAudio();
+    playSubBass808();
     const drawn = await drawFortune();
+    if (viewMode === 'receipt') {
+      playReceiptClick();
+    }
     if (drawn) {
       const verdictUpper = drawn.destinyVerdict.title.toUpperCase();
       if (
@@ -108,19 +121,21 @@ export function App() {
       }
     }
     return drawn;
-  }, [isSpeaking, stopTTS, drawFortune, activeEra, triggerConfetti]);
+  }, [
+    initAudio,
+    playSubBass808,
+    drawFortune,
+    viewMode,
+    playReceiptClick,
+    activeEra,
+    triggerConfetti,
+  ]);
 
-  // Voice TTS toggle handler
-  const handleToggleTTS = useCallback(() => {
-    if (!fortune) return;
-    if (isSpeaking) {
-      stopTTS();
-    } else {
-      const speechText = `${fortune.quote}. Destiny verdict: ${fortune.destinyVerdict.title}. Ye's directive: ${fortune.actionableCommand}.`;
-      speak(speechText);
-      setToastMessage('Ye is speaking...');
-    }
-  }, [fortune, isSpeaking, stopTTS, speak]);
+  // Mute toggler with toast feedback
+  const handleToggleMute = useCallback(() => {
+    const updatedMuted = toggleMute();
+    setToastMessage(updatedMuted ? 'Sound muted' : 'Sound enabled');
+  }, [toggleMute]);
 
   // Keyboard shortcut listener
   const handleKeyDown = useCallback(
@@ -144,11 +159,13 @@ export function App() {
         handleSelectEra('808s');
       } else if (e.key === '4') {
         handleSelectEra('yeezus');
+      } else if (e.key.toLowerCase() === 'm') {
+        handleToggleMute();
       } else if (e.key.toLowerCase() === 'f') {
         handleFlip();
       }
     },
-    [handleDraw, handleSelectEra, handleFlip]
+    [handleDraw, handleSelectEra, handleToggleMute, handleFlip]
   );
 
   useEffect(() => {
@@ -178,6 +195,8 @@ export function App() {
         onSelectEra={handleSelectEra}
         viewMode={viewMode}
         onToggleViewMode={handleToggleViewMode}
+        isMuted={isMuted}
+        onToggleMute={handleToggleMute}
       />
 
       {/* Main Interactive Stage */}
@@ -190,21 +209,8 @@ export function App() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.35 }}
-            className="flex flex-col items-center gap-2"
+            className="flex flex-col items-center gap-1.5"
           >
-            <div
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-widest border transition-all duration-500"
-              style={{
-                backgroundColor: `${currentEra.colors.surface}80`,
-                borderColor: currentEra.colors.border,
-                color: currentEra.colors.accent,
-                boxShadow: `0 0 20px ${currentEra.colors.glow}`,
-              }}
-            >
-              <Compass className="w-3.5 h-3.5 animate-spin-slow" />
-              <span>{currentEra.badgeLabel}</span>
-            </div>
-
             <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white mt-1">
               ORACLE OF YE
             </h1>
@@ -268,11 +274,9 @@ export function App() {
           viewMode={viewMode}
           isFlipped={isFlipped}
           isLoading={isLoading}
-          isSpeaking={isSpeaking}
           activeEra={activeEra}
           onRedraw={handleDraw}
           onFlip={handleFlip}
-          onToggleTTS={handleToggleTTS}
           onExport={() => setIsExportModalOpen(true)}
           onToast={setToastMessage}
         />
@@ -297,17 +301,6 @@ export function App() {
           />
         </Suspense>
       )}
-
-      {/* Ambient Voice Glow (libraries.dev inspired) */}
-      <VoiceGlow isSpeaking={isSpeaking} activeEra={activeEra} />
-
-      {/* Reactive Speaking Voice Orb (shipnotes-components inspired) */}
-      <SpeakingVoiceOrb
-        isSpeaking={isSpeaking}
-        activeEra={activeEra}
-        quote={fortune?.quote}
-        onStop={stopTTS}
-      />
 
       {/* App Footer */}
       <Footer activeEra={activeEra} />

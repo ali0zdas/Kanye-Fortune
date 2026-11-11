@@ -1,7 +1,7 @@
 import React from 'react';
 import { EraId, ViewMode } from '../../types/fortune';
 import { EraSwitcher } from '../era/EraSwitcher';
-import { Sparkles, Layers, ReceiptText } from 'lucide-react';
+import { Sparkles, Layers, ReceiptText, Volume2, VolumeX } from 'lucide-react';
 import { getEraConfig } from '../../data/eras';
 
 interface HeaderProps {
@@ -9,6 +9,8 @@ interface HeaderProps {
   onSelectEra: (era: EraId) => void;
   viewMode?: ViewMode;
   onToggleViewMode?: (mode: ViewMode) => void;
+  isMuted?: boolean;
+  onToggleMute?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -16,6 +18,8 @@ export const Header: React.FC<HeaderProps> = ({
   onSelectEra,
   viewMode = 'card',
   onToggleViewMode,
+  isMuted = false,
+  onToggleMute,
 }) => {
   const eraConfig = getEraConfig(activeEra);
 
@@ -94,6 +98,25 @@ export const Header: React.FC<HeaderProps> = ({
                 <ReceiptText className="w-4 h-4" />
               </button>
             </div>
+          )}
+
+          {/* Sound Synthesizer Toggle */}
+          {onToggleMute && (
+            <button
+              onClick={onToggleMute}
+              className="p-2 rounded-lg border border-white/10 bg-black/30 text-zinc-400 hover:text-white hover:bg-white/5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+              title={isMuted ? 'Unmute Sound Effects' : 'Mute Sound Effects'}
+              aria-label={isMuted ? 'Unmute' : 'Mute'}
+            >
+              {isMuted ? (
+                <VolumeX className="w-4 h-4 text-zinc-500" />
+              ) : (
+                <Volume2
+                  className="w-4 h-4 transition-colors"
+                  style={{ color: eraConfig.colors.accent }}
+                />
+              )}
+            </button>
           )}
         </div>
       </div>
