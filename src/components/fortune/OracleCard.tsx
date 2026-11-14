@@ -15,8 +15,6 @@ import {
   ShieldCheck,
   Bell,
   RefreshCw,
-  Award,
-  Zap,
   Heart,
 } from 'lucide-react';
 
@@ -124,7 +122,7 @@ export const OracleCard: React.FC<OracleCardProps> = ({
               <span>{eraConfig.badgeLabel}</span>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2.5">
               <span className="text-[11px] font-mono text-zinc-400 font-semibold tracking-wider">
                 {serialNumber}
               </span>
@@ -134,81 +132,57 @@ export const OracleCard: React.FC<OracleCardProps> = ({
             </div>
           </div>
 
-          {/* Destiny Verdict Banner */}
-          <div
-            className="py-2.5 px-3 rounded-xl border text-center transition-all duration-300 my-2"
-            style={{
-              backgroundColor: `${eraConfig.colors.surface}bb`,
-              borderColor: `${eraConfig.colors.border}80`,
-              boxShadow: `0 0 15px ${eraConfig.colors.glow}`,
-            }}
-          >
-            <div className="flex items-center justify-center gap-1 text-[10px] font-mono tracking-widest uppercase mb-0.5 text-zinc-400">
-              <Award className="w-3 h-3 text-amber-400" />
-              <span>DESTINY VERDICT</span>
-            </div>
+          {/* Destiny Verdict (Subtle Archetype Stamp — Quote Remains Hero) */}
+          <div className="text-center pt-3 pb-1">
+            <span className="block text-[9px] font-mono tracking-[0.24em] uppercase text-zinc-500 mb-0.5">
+              DESTINY VERDICT
+            </span>
             <h2
-              className="text-base sm:text-lg font-black tracking-wider uppercase font-sans"
+              className="text-xs sm:text-sm font-mono font-bold tracking-[0.18em] uppercase [text-wrap:balance]"
               style={{ color: eraConfig.colors.accent }}
             >
-              *** {fortune ? fortune.destinyVerdict.title : 'GOD LEVEL ASCENDANT'} ***
+              {fortune ? fortune.destinyVerdict.title : 'GOD LEVEL ASCENDANT'}
             </h2>
-            <p className="text-[11px] text-zinc-300 font-mono tracking-tight mt-0.5 line-clamp-1">
-              {fortune
-                ? fortune.destinyVerdict.subtitle
-                : 'Maximum Distortion of Standard Human Limitations'}
-            </p>
           </div>
 
-          {/* Kanye Quote Body (Hero) */}
-          <div className="flex-1 flex flex-col justify-center my-2 text-center px-2">
-            <blockquote className="text-lg sm:text-xl font-bold leading-snug tracking-tight text-white italic drop-shadow-md">
+          {/* Kanye Quote Body (Undisputed Hero) */}
+          <div className="flex-1 flex flex-col justify-center my-4 text-center px-3">
+            <blockquote className="text-xl sm:text-2xl font-sans font-bold leading-snug tracking-tight text-white [text-wrap:pretty]">
               “{fortune ? fortune.quote : 'I refuse to accept other people’s ideas of my limitations.'}”
             </blockquote>
             <p
-              className="text-xs font-mono mt-2 font-bold tracking-widest uppercase"
+              className="text-[11px] font-mono mt-3 font-bold tracking-[0.22em] uppercase"
               style={{ color: eraConfig.colors.accent }}
             >
               — Kanye West
             </p>
           </div>
 
-          {/* Oracle Interpretation Guidance */}
-          <div className="my-2 p-3 rounded-xl bg-black/40 border border-white/5 text-center">
-            <p className="text-xs leading-relaxed text-zinc-300 italic font-serif">
+          {/* Unified Lower Note: Interpretation + Inline Directive (No Serif, No Icons) */}
+          <div className="border-t border-white/10 pt-3.5 pb-2 space-y-2.5 text-center">
+            <p className="text-xs font-sans leading-relaxed text-zinc-300/90 line-clamp-3 [text-wrap:pretty] px-1">
               {fortune
                 ? fortune.oracleInterpretation
                 : 'You are operating on a frequency engineered for stadium status. Trust the vision.'}
             </p>
-          </div>
 
-          {/* Ye's Directive / Actionable Command Pill */}
-          <div
-            className="py-2 px-3 rounded-lg border text-center transition-colors my-1"
-            style={{
-              backgroundColor: `${eraConfig.colors.surface}90`,
-              borderColor: `${eraConfig.colors.border}50`,
-            }}
-          >
-            <span className="text-[10px] font-mono font-bold tracking-widest uppercase flex items-center justify-center gap-1 text-amber-300 mb-0.5">
-              <Zap className="w-3 h-3" />
-              <span>YE'S DIRECTIVE</span>
-            </span>
-            <p className="text-xs font-mono font-medium text-white line-clamp-2">
+            <p className="text-[11px] font-mono text-zinc-400 leading-snug line-clamp-2 [text-wrap:pretty] px-1">
+              <span className="text-zinc-200 font-semibold uppercase tracking-wider">
+                Directive:
+              </span>{' '}
               {fortune
                 ? fortune.actionableCommand
                 : 'Shut down the studio until it is completely perfect.'}
             </p>
           </div>
 
-          {/* Aura & Artifact Footer */}
-          <div className="pt-3 border-t border-white/10 grid grid-cols-2 gap-2 text-left mt-1">
-            {/* Aura Pill */}
-            <div className="p-2 rounded-lg bg-black/50 border border-white/5">
-              <div className="text-[9px] font-mono text-zinc-400 uppercase tracking-wider mb-0.5">
+          {/* Aura & Artifact Minimal Metadata Strip (Era-harmonized icon) */}
+          <div className="pt-3 border-t border-white/10 grid grid-cols-2 divide-x divide-white/10 text-left">
+            <div className="pr-3">
+              <div className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest mb-0.5">
                 Aura Rating
               </div>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-baseline gap-1.5 truncate">
                 <span
                   className="text-xs font-mono font-bold"
                   style={{ color: eraConfig.colors.accent }}
@@ -216,18 +190,19 @@ export const OracleCard: React.FC<OracleCardProps> = ({
                   {fortune ? `${fortune.auraScore}%` : '99.8%'}
                 </span>
                 <span className="text-[10px] text-zinc-300 truncate font-mono">
-                  [{fortune ? fortune.auraTitle.toUpperCase() : 'GOD COMPLEX'}]
+                  {fortune ? fortune.auraTitle.toUpperCase() : 'GOD COMPLEX'}
                 </span>
               </div>
             </div>
 
-            {/* Lucky Artifact Pill */}
-            <div className="p-2 rounded-lg bg-black/50 border border-white/5">
-              <div className="text-[9px] font-mono text-zinc-400 uppercase tracking-wider mb-0.5">
+            <div className="pl-3">
+              <div className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest mb-0.5">
                 Lucky Artifact
               </div>
               <div className="flex items-center gap-1.5">
-                <ArtifactIcon className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <span style={{ color: eraConfig.colors.accent }} className="shrink-0">
+                  <ArtifactIcon className="w-3.5 h-3.5" />
+                </span>
                 <span className="text-xs font-mono font-medium text-white truncate">
                   {fortune ? fortune.luckyArtifact.name : 'Red Stem Player'}
                 </span>
@@ -236,7 +211,7 @@ export const OracleCard: React.FC<OracleCardProps> = ({
           </div>
 
           {/* Official Seal Watermark */}
-          <div className="mt-2 text-center text-[9px] font-mono text-zinc-500 uppercase tracking-widest flex items-center justify-between">
+          <div className="mt-3 pt-2 border-t border-white/5 text-center text-[9px] font-mono text-zinc-500 uppercase tracking-widest flex items-center justify-between">
             <span>EST. 1977</span>
             <span>OFFICIAL ORACLE OF YE</span>
             <span>
