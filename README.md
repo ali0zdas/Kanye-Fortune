@@ -39,22 +39,9 @@ Press **`Space`** to draw your first fortune, **`V`** to switch between 3D Card 
 - **Dual Presentation Views**:
   - **3D Tarot Card**: Interactive flip card with holographic borders, dynamic glow, and aura score.
   - **Yeezy Thermal Receipt**: Monochrome store receipt with serrated tear edges and barcode styling.
-- **Procedural Web Audio & TTS**: Zero-asset audio synthesizer generating 808 sub-bass drops, vinyl crackle, printer clicks, and card whooshes, paired with Web Speech & remote TTS voicing.
+- **Procedural Web Audio**: Zero-asset audio synthesizer generating 808 sub-bass drops, vinyl crackle, printer clicks, and card whooshes.
 - **High-DPI Social Export**: 1-click PNG export in **1:1 Square** and **9:16 Story** formats, plus direct clipboard and X (Twitter) sharing.
 - **Offline Resilient**: Hybrid API connection with automatic fallback to a curated **42-quote offline vault**.
-
----
-
-## Keyboard Shortcuts
-
-| Key | Action |
-| :--- | :--- |
-| `Space` | Draw New Fortune |
-| `F` | Flip 3D Card (Card Mode) |
-| `V` | Toggle View Mode (Card / Receipt) |
-| `M` | Toggle Audio Mute |
-| `E` | Open Social Export Modal |
-| `1` – `4` | Switch Era (`1` Donda, `2` Graduation, `3` 808s, `4` Yeezus) |
 
 ---
 
