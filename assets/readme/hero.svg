@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1200" height="380" viewBox="0 0 1200 380"
+     role="img" aria-labelledby="hero-title hero-desc">
+  <title id="hero-title">Kanye Fortune — Oracle of Ye</title>
+  <desc id="hero-desc">Interactive Kanye West fortune-telling web app with 4 dynamic era themes, 3D tarot card, brutalist thermal receipt, procedural Web Audio, and high-DPI social export.</desc>
+
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050505"/>
+      <stop offset="60%" stop-color="#0d0d10"/>
+      <stop offset="100%" stop-color="#14091e"/>
+    </linearGradient>
+    <linearGradient id="card-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18181b"/>
+      <stop offset="100%" stop-color="#09090b"/>
+    </linearGradient>
+    <linearGradient id="accent-line" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="33%" stop-color="#ec4899"/>
+      <stop offset="66%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Main Canvas -->
+  <rect width="1200" height="380" rx="22" fill="url(#bg-grad)"/>
+  <rect x="1" y="1" width="1198" height="378" rx="21" fill="none" stroke="#27272a" stroke-width="1.5"/>
+
+  <!-- Top Accent Hairline -->
+  <rect x="56" y="42" width="180" height="3" rx="1.5" fill="url(#accent-line)"/>
+
+  <!-- Left Column: Identity & Value -->
+  <g id="title-block" transform="translate(56, 72)">
+    <text x="0" y="0" fill="#a1a1aa" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="16" font-weight="600" letter-spacing="2">
+      INTERACTIVE ORACLE • REACT 19 + WEB AUDIO
+    </text>
+
+    <text x="0" y="64" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="54" font-weight="800" letter-spacing="-1">
+      Kanye Fortune
+    </text>
+
+    <text x="0" y="102" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="400">
+      Destiny verdicts, 3D tarot cards, and brutalist thermal receipts
+    </text>
+    <text x="0" y="132" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="400">
+      across 4 dynamic Kanye eras with procedural 808 synthesis.
+    </text>
+
+    <!-- 4 Era Swatch Pills -->
+    <g transform="translate(0, 170)">
+      <!-- Donda -->
+      <rect x="0" y="0" width="112" height="34" rx="17" fill="#121212" stroke="#ffffff" stroke-width="1.2"/>
+      <circle cx="18" cy="17" r="5" fill="#ffffff"/>
+      <text x="32" y="23" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="16" font-weight="600">Donda</text>
+
+      <!-- Graduation -->
+      <rect x="124" y="0" width="144" height="34" rx="17" fill="#1a052e" stroke="#ec4899" stroke-width="1.2"/>
+      <circle cx="142" cy="17" r="5" fill="#ec4899"/>
+      <text x="156" y="23" fill="#fdf2f8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="16" font-weight="600">Graduation</text>
+
+      <!-- 808s -->
+      <rect x="280" y="0" width="104" height="34" rx="17" fill="#080d1a" stroke="#06b6d4" stroke-width="1.2"/>
+      <circle cx="298" cy="17" r="5" fill="#06b6d4"/>
+      <text x="312" y="23" fill="#ecfeff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="16" font-weight="600">808s</text>
+
+      <!-- Yeezus -->
+      <rect x="396" y="0" width="114" height="34" rx="17" fill="#180909" stroke="#ef4444" stroke-width="1.2"/>
+      <circle cx="414" cy="17" r="5" fill="#ef4444"/>
+      <text x="428" y="23" fill="#fef2f2" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="16" font-weight="600">Yeezus</text>
+    </g>
+
+    <!-- Metadata Footer -->
+    <text x="0" y="252" fill="#71717a" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">
+      42-Quote Offline Vault  •  1:1 &amp; 9:16 PNG Export  •  324 E2E Tests
+    </text>
+  </g>
+
+  <!-- Right Column: Dual-Mode Proof (3D Tarot Card + Yeezy Thermal Receipt) -->
+  <g id="project-proof" transform="translate(720, 44)">
+    <!-- 3D Tarot Card Specimen -->
+    <g transform="translate(0, 12)">
+      <rect x="0" y="0" width="210" height="278" rx="16" fill="url(#card-grad)" stroke="#ec4899" stroke-width="1.8"/>
+      <rect x="12" y="12" width="186" height="254" rx="10" fill="none" stroke="#3f3f46" stroke-width="1"/>
+      <text x="105" y="42" text-anchor="middle" fill="#ec4899" font-family="ui-monospace, SFMono-Regular, monospace" font-size="14" font-weight="700" letter-spacing="1.5">ORACLE CARD</text>
+      <circle cx="105" cy="112" r="34" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4 4"/>
+      <circle cx="105" cy="112" r="18" fill="#ec4899" opacity="0.22"/>
+      <text x="105" y="119" text-anchor="middle" fill="#fbbf24" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="22" font-weight="700">YE</text>
+      <text x="105" y="178" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="700">AURA: 98%</text>
+      <text x="105" y="208" text-anchor="middle" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16">"Trust your</text>
+      <text x="105" y="230" text-anchor="middle" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16">own vision."</text>
+    </g>
+
+    <!-- Yeezy Thermal Receipt Specimen -->
+    <g transform="translate(230, 0)">
+      <path d="M 0,10 L 10,0 L 20,10 L 30,0 L 40,10 L 50,0 L 60,10 L 70,0 L 80,10 L 90,0 L 100,10 L 110,0 L 120,10 L 130,0 L 140,10 L 150,0 L 160,10 L 170,0 L 180,10 L 190,0 L 200,10 L 200,282 L 190,292 L 180,282 L 170,292 L 160,282 L 150,292 L 140,282 L 130,292 L 120,282 L 110,292 L 100,282 L 90,292 L 80,282 L 70,292 L 60,282 L 50,292 L 40,282 L 30,292 L 20,282 L 10,292 L 0,282 Z" fill="#f4f4f5"/>
+      <text x="100" y="38" text-anchor="middle" fill="#09090b" font-family="ui-monospace, SFMono-Regular, monospace" font-size="16" font-weight="800">YEEZY SUPPLY</text>
+      <text x="100" y="58" text-anchor="middle" fill="#52525b" font-family="ui-monospace, SFMono-Regular, monospace" font-size="14">THERMAL RECEIPT</text>
+      <line x1="18" y1="72" x2="182" y2="72" stroke="#a1a1aa" stroke-width="1" stroke-dasharray="4 4"/>
+      <text x="18" y="98" fill="#18181b" font-family="ui-monospace, SFMono-Regular, monospace" font-size="15" font-weight="700">ERA: DONDA</text>
+      <text x="18" y="122" fill="#18181b" font-family="ui-monospace, SFMono-Regular, monospace" font-size="15">VERDICT: SHIP IT</text>
+      <text x="18" y="146" fill="#18181b" font-family="ui-monospace, SFMono-Regular, monospace" font-size="15">AUDIO: 808 SUB</text>
+      <line x1="18" y1="166" x2="182" y2="166" stroke="#a1a1aa" stroke-width="1" stroke-dasharray="4 4"/>
+      <!-- Barcode -->
+      <g transform="translate(26, 184)">
+        <rect x="0" y="0" width="4" height="48" fill="#09090b"/>
+        <rect x="8" y="0" width="2" height="48" fill="#09090b"/>
+        <rect x="14" y="0" width="6" height="48" fill="#09090b"/>
+        <rect x="24" y="0" width="2" height="48" fill="#09090b"/>
+        <rect x="30" y="0" width="5" height="48" fill="#09090b"/>
+        <rect x="40" y="0" width="3" height="48" fill="#09090b"/>
+        <rect x="48" y="0" width="7" height="48" fill="#09090b"/>
+        <rect x="60" y="0" width="2" height="48" fill="#09090b"/>
+        <rect x="66" y="0" width="4" height="48" fill="#09090b"/>
+        <rect x="75" y="0" width="6" height="48" fill="#09090b"/>
+        <rect x="86" y="0" width="3" height="48" fill="#09090b"/>
+        <rect x="94" y="0" width="5" height="48" fill="#09090b"/>
+        <rect x="104" y="0" width="2" height="48" fill="#09090b"/>
+        <rect x="110" y="0" width="6" height="48" fill="#09090b"/>
+        <rect x="122" y="0" width="3" height="48" fill="#09090b"/>
+        <rect x="130" y="0" width="4" height="48" fill="#09090b"/>
+        <rect x="140" y="0" width="6" height="48" fill="#09090b"/>
+      </g>
+      <text x="100" y="256" text-anchor="middle" fill="#52525b" font-family="ui-monospace, SFMono-Regular, monospace" font-size="14">NO. 0808-2026-YE</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1200" height="220" viewBox="0 0 1200 220"
+     role="img" aria-labelledby="flow-title flow-desc">
+  <title id="flow-title">Oracle Pipeline</title>
+  <desc id="flow-desc">Four-stage pipeline: Dilemma or Serendipity Input, Oracle Engine with 42-quote offline fallback, Dual Presentation in 3D Card or Thermal Receipt, and Web Audio plus High-DPI PNG Export.</desc>
+
+  <rect width="1200" height="220" rx="18" fill="#09090b"/>
+  <rect x="1" y="1" width="1198" height="218" rx="17" fill="none" stroke="#27272a" stroke-width="1.5"/>
+
+  <text x="48" y="42" fill="#a1a1aa" font-family="ui-monospace, SFMono-Regular, monospace" font-size="16" font-weight="600" letter-spacing="1.5">
+    HOW THE ORACLE WORKS
+  </text>
+
+  <!-- Step 1 -->
+  <g transform="translate(48, 66)">
+    <rect width="250" height="118" rx="12" fill="#121212" stroke="#27272a" stroke-width="1.2"/>
+    <text x="20" y="34" fill="#ffffff" font-family="ui-monospace, SFMono-Regular, monospace" font-size="16" font-weight="700">01 / INPUT</text>
+    <text x="20" y="66" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="600">Dilemma or Space</text>
+    <text x="20" y="94" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16">Instant serendipity draw</text>
+  </g>
+
+  <path d="M 306,125 L 330,125" stroke="#52525b" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="330,120 338,125 330,130" fill="#52525b"/>
+
+  <!-- Step 2 -->
+  <g transform="translate(344, 66)">
+    <rect width="250" height="118" rx="12" fill="#121212" stroke="#ec4899" stroke-width="1.2"/>
+    <text x="20" y="34" fill="#ec4899" font-family="ui-monospace, SFMono-Regular, monospace" font-size="16" font-weight="700">02 / ORACLE ENGINE</text>
+    <text x="20" y="66" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="600">Hybrid API + Vault</text>
+    <text x="20" y="94" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16">42-quote offline fallback</text>
+  </g>
+
+  <path d="M 602,125 L 626,125" stroke="#52525b" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="626,120 634,125 626,130" fill="#52525b"/>
+
+  <!-- Step 3 -->
+  <g transform="translate(640, 66)">
+    <rect width="250" height="118" rx="12" fill="#121212" stroke="#06b6d4" stroke-width="1.2"/>
+    <text x="20" y="34" fill="#06b6d4" font-family="ui-monospace, SFMono-Regular, monospace" font-size="16" font-weight="700">03 / DUAL VIEW</text>
+    <text x="20" y="66" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="600">3D Card &amp; Receipt</text>
+    <text x="20" y="94" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16">4 era design token themes</text>
+  </g>
+
+  <path d="M 898,125 L 922,125" stroke="#52525b" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="922,120 930,125 922,130" fill="#52525b"/>
+
+  <!-- Step 4 -->
+  <g transform="translate(936, 66)">
+    <rect width="216" height="118" rx="12" fill="#121212" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="20" y="34" fill="#ef4444" font-family="ui-monospace, SFMono-Regular, monospace" font-size="16" font-weight="700">04 / OUTPUT</text>
+    <text x="20" y="66" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="600">Audio &amp; Export</text>
+    <text x="20" y="94" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16">808 synth, TTS, 1:1/9:16</text>
+  </g>
+</svg>
