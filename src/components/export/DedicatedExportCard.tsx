@@ -13,8 +13,6 @@ import {
   Sliders,
   ShieldCheck,
   Bell,
-  Award,
-  Zap,
   Compass,
   Flame,
 } from 'lucide-react';
@@ -81,10 +79,6 @@ export const DedicatedExportCard = forwardRef<HTMLDivElement, DedicatedExportCar
     const displayVerdict = fortune
       ? fortune.destinyVerdict.title
       : 'GOD LEVEL ASCENDANT';
-
-    const displaySubtitle = fortune
-      ? fortune.destinyVerdict.subtitle
-      : 'Maximum Distortion of Standard Human Limitations';
 
     const displayInterpretation = fortune
       ? fortune.oracleInterpretation
@@ -195,155 +189,124 @@ export const DedicatedExportCard = forwardRef<HTMLDivElement, DedicatedExportCar
           }`}
         >
           {viewMode === 'card' ? (
-            /* --- 3D TAROT CARD PRESENTATION --- */
-            <div
+            /* --- MINIMALIST TAROT CARD PRESENTATION --- */
+            <article
               className={`w-full max-w-2xl mx-auto flex flex-col justify-between border rounded-3xl backdrop-blur-2xl shadow-2xl transition-all ${
-                isStory ? 'p-12 min-h-[1180px]' : 'p-8 min-h-[720px]'
+                isStory ? 'p-14 min-h-[1160px]' : 'p-10 min-h-[720px]'
               }`}
               style={{
                 backgroundColor: `${eraConfig.colors.surface}f5`,
                 borderColor: eraConfig.colors.border,
-                boxShadow: `0 35px 80px -20px ${eraConfig.colors.glow}, inset 0 0 30px rgba(255,255,255,0.05)`,
+                boxShadow: `0 35px 80px -20px ${eraConfig.colors.glow}, inset 0 0 30px rgba(255,255,255,0.04)`,
               }}
             >
-              {/* Card Header */}
-              <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                <div
-                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase border"
-                  style={{
-                    backgroundColor: `${eraConfig.colors.accent}20`,
-                    borderColor: `${eraConfig.colors.border}80`,
-                    color: eraConfig.colors.accent,
-                  }}
-                >
-                  <Sparkles className="w-4 h-4" />
-                  <span>{eraConfig.badgeLabel}</span>
-                </div>
+              {/* Card Header: Era Name & Series (avoids duplicating outer header badge) */}
+              <div className="flex items-center justify-between border-b border-white/10 pb-5">
+                <span className="text-xs font-mono text-zinc-400 font-bold tracking-[0.2em] uppercase">
+                  {eraConfig.name} // ARCANA
+                </span>
 
-                <div className="text-sm font-mono text-zinc-400 font-bold tracking-widest">
+                <span className="text-xs font-mono text-zinc-400 font-bold tracking-[0.2em]">
                   SERIES {serialNumber}
-                </div>
+                </span>
               </div>
 
-              {/* Destiny Verdict Banner */}
-              <div
-                className={`rounded-2xl border text-center transition-all ${
-                  isStory ? 'py-6 px-6 my-6' : 'py-3.5 px-4 my-3'
-                }`}
-                style={{
-                  backgroundColor: `${eraConfig.colors.surface}cc`,
-                  borderColor: `${eraConfig.colors.border}90`,
-                  boxShadow: `0 0 25px ${eraConfig.colors.glow}`,
-                }}
-              >
-                <div className="flex items-center justify-center gap-1.5 text-xs font-mono tracking-widest uppercase mb-1 text-zinc-400">
-                  <Award className="w-4 h-4 text-amber-400" />
-                  <span>DESTINY VERDICT</span>
-                </div>
+              {/* Destiny Verdict (Subtle Archetype Stamp — Quote Remains Hero) */}
+              <div className={`text-center ${isStory ? 'pt-6 pb-2' : 'pt-3 pb-1'}`}>
+                <span className="block text-[10px] font-mono tracking-[0.26em] uppercase mb-1 text-zinc-500">
+                  DESTINY VERDICT
+                </span>
                 <h2
-                  className={`font-black tracking-wider uppercase font-sans ${
-                    isStory ? 'text-3xl' : 'text-2xl'
+                  className={`font-mono font-bold tracking-[0.2em] uppercase [text-wrap:balance] ${
+                    isStory ? 'text-base' : 'text-sm'
                   }`}
                   style={{ color: eraConfig.colors.accent }}
                 >
-                  *** {displayVerdict} ***
+                  {displayVerdict}
                 </h2>
-                <p className="text-xs text-zinc-300 font-mono tracking-tight mt-1">
-                  {displaySubtitle}
-                </p>
               </div>
 
-              {/* Kanye Quote Body (Hero) */}
+              {/* Kanye Quote Body (Undisputed Hero) */}
               <div
                 className={`flex-1 flex flex-col justify-center text-center ${
-                  isStory ? 'my-8 px-6' : 'my-3 px-4'
+                  isStory ? 'my-12 px-6' : 'my-6 px-4'
                 }`}
               >
                 <blockquote
-                  className={`font-bold leading-snug tracking-tight text-white italic drop-shadow-lg ${
-                    isStory ? 'text-4xl' : 'text-2xl'
+                  className={`font-sans font-bold leading-snug tracking-tight text-white [text-wrap:pretty] ${
+                    isStory ? 'text-5xl' : 'text-3xl'
                   }`}
                 >
                   “{displayQuote}”
                 </blockquote>
                 <p
-                  className="text-sm font-mono mt-3 font-bold tracking-widest uppercase"
+                  className="text-sm font-mono mt-5 font-bold tracking-[0.24em] uppercase"
                   style={{ color: eraConfig.colors.accent }}
                 >
                   — Kanye West
                 </p>
               </div>
 
-              {/* Oracle Interpretation */}
+              {/* Unified Lower Note: Interpretation + Inline Directive (No Serif, No Icons) */}
               <div
-                className={`rounded-2xl bg-black/50 border border-white/10 text-center ${
-                  isStory ? 'my-6 p-6' : 'my-2.5 p-4'
+                className={`border-t border-white/10 text-center ${
+                  isStory ? 'pt-8 pb-6 space-y-5' : 'pt-5 pb-4 space-y-3'
                 }`}
               >
                 <p
-                  className={`leading-relaxed text-zinc-200 italic font-serif ${
+                  className={`font-sans leading-relaxed text-zinc-300/90 [text-wrap:pretty] px-2 ${
                     isStory ? 'text-lg' : 'text-sm'
                   }`}
                 >
                   {displayInterpretation}
                 </p>
-              </div>
 
-              {/* Ye's Directive */}
-              <div
-                className={`rounded-xl border text-center ${
-                  isStory ? 'py-4 px-6 my-4' : 'py-2.5 px-4 my-2'
-                }`}
-                style={{
-                  backgroundColor: `${eraConfig.colors.surface}95`,
-                  borderColor: `${eraConfig.colors.border}60`,
-                }}
-              >
-                <span className="text-xs font-mono font-bold tracking-widest uppercase flex items-center justify-center gap-1.5 text-amber-300 mb-1">
-                  <Zap className="w-4 h-4" />
-                  <span>YE'S DIRECTIVE</span>
-                </span>
                 <p
-                  className={`font-mono font-medium text-white ${
-                    isStory ? 'text-base' : 'text-xs'
+                  className={`font-mono text-zinc-400 leading-snug [text-wrap:pretty] px-2 ${
+                    isStory ? 'text-sm' : 'text-xs'
                   }`}
                 >
+                  <span className="text-zinc-200 font-semibold uppercase tracking-wider">
+                    Directive:
+                  </span>{' '}
                   {displayDirective}
                 </p>
               </div>
 
-              {/* Footer Metrics: Aura & Lucky Artifact */}
-              <div className="pt-4 border-t border-white/10 grid grid-cols-2 gap-4 text-left">
-                <div className="p-3.5 rounded-xl bg-black/60 border border-white/5">
-                  <div className="text-[11px] font-mono text-zinc-400 uppercase tracking-wider mb-1">
+              {/* Footer Metrics: Minimal Divided Strip (Era-harmonized icon) */}
+              <div className="pt-5 border-t border-white/10 grid grid-cols-2 divide-x divide-white/10 text-left">
+                <div className="pr-6">
+                  <div className="text-[11px] font-mono text-zinc-500 uppercase tracking-widest mb-1">
                     Aura Rating
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-baseline gap-2">
                     <span
                       className="text-base font-mono font-bold"
                       style={{ color: eraConfig.colors.accent }}
                     >
                       {fortune ? `${fortune.auraScore}%` : '99.8%'}
                     </span>
-                    <span className="text-xs text-zinc-300 font-mono">
-                      [{fortune ? fortune.auraTitle.toUpperCase() : 'GOD COMPLEX'}]
+                    <span className="text-xs text-zinc-300 font-mono truncate">
+                      {fortune ? fortune.auraTitle.toUpperCase() : 'GOD COMPLEX'}
                     </span>
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-black/60 border border-white/5">
-                  <div className="text-[11px] font-mono text-zinc-400 uppercase tracking-wider mb-1">
+                <div className="pl-6">
+                  <div className="text-[11px] font-mono text-zinc-500 uppercase tracking-widest mb-1">
                     Lucky Yeezy Artifact
                   </div>
                   <div className="flex items-center gap-2">
-                    <ArtifactIcon className="w-4 h-4 text-amber-400" />
+                    <span style={{ color: eraConfig.colors.accent }} className="shrink-0">
+                      <ArtifactIcon className="w-4 h-4" />
+                    </span>
                     <span className="text-xs text-zinc-200 font-mono font-bold truncate">
                       {fortune ? fortune.luckyArtifact.name.toUpperCase() : 'RED OCTOBERS'}
                     </span>
                   </div>
                 </div>
               </div>
-            </div>
+            </article>
           ) : (
             /* --- YEEZY THERMAL RECEIPT PRESENTATION --- */
             <div
